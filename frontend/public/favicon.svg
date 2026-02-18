@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="none">
+  <!-- Background -->
+  <rect width="32" height="32" rx="6" fill="#0F172A"/>
+
+  <!-- Pizza slice triangle -->
+  <path d="M16 5 L26 25 L6 25 Z" fill="#F97316"/>
+
+  <!-- Crust arc -->
+  <path d="M7 25 Q16 29 25 25" stroke="#D97706" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+
+  <!-- Pepperoni dots -->
+  <circle cx="14" cy="18" r="2" fill="#DC2626"/>
+  <circle cx="19" cy="20" r="1.8" fill="#DC2626"/>
+  <circle cx="16" cy="13" r="1.6" fill="#DC2626"/>
+
+  <!-- Tiny eyes -->
+  <circle cx="14" cy="10" r="1.3" fill="#1E293B"/>
+  <circle cx="18" cy="10" r="1.3" fill="#1E293B"/>
+  <circle cx="14.3" cy="9.7" r="0.5" fill="white"/>
+  <circle cx="18.3" cy="9.7" r="0.5" fill="white"/>
+</svg>
