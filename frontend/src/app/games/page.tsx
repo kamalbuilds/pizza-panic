@@ -2,7 +2,7 @@
 
 import { useState, useMemo } from "react";
 import { motion } from "framer-motion";
-import { Gamepad2, Filter, ArrowUpDown } from "lucide-react";
+import { Gamepad2, Filter, ArrowUpDown, Flame, Sparkles } from "lucide-react";
 import { cn } from "@/lib/utils";
 import GameCard from "@/components/GameCard";
 import { useGames } from "@/hooks/useGames";
@@ -67,8 +67,9 @@ export default function GamesPage() {
   return (
     <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8 relative">
       {/* Ambient background glow */}
-      <div className="absolute top-0 left-1/4 w-96 h-96 bg-red-500/5 rounded-full blur-[128px] pointer-events-none" />
-      <div className="absolute top-40 right-1/4 w-72 h-72 bg-purple-500/5 rounded-full blur-[100px] pointer-events-none" />
+      <div className="absolute top-0 left-1/4 w-96 h-96 bg-orange-500/5 rounded-full blur-[128px] pointer-events-none" />
+      <div className="absolute top-40 right-1/4 w-72 h-72 bg-purple-500/4 rounded-full blur-[100px] pointer-events-none" />
+      <div className="absolute top-20 right-1/3 w-48 h-48 bg-red-500/3 rounded-full blur-[80px] pointer-events-none" />
 
       {/* Header */}
       <motion.div
@@ -77,24 +78,30 @@ export default function GamesPage() {
         transition={{ duration: 0.6, ease: [0.23, 1, 0.32, 1] }}
         className="mb-10 relative"
       >
-        <div className="flex items-center gap-3 mb-3">
-          <div className="relative">
-            <div className="absolute inset-0 bg-red-500/20 rounded-xl blur-xl animate-pulse-glow" />
-            <div className="relative glass-card rounded-xl p-2.5 glow-red">
-              <Gamepad2 className="h-7 w-7 neon-red" />
+        <div className="flex items-center justify-between mb-3">
+          <div className="flex items-center gap-3">
+            <div className="relative">
+              <div className="absolute inset-0 bg-orange-500/20 rounded-xl blur-xl animate-pulse-glow" />
+              <div className="relative glass-card rounded-xl p-2.5 border border-orange-500/20">
+                <Flame className="h-7 w-7 text-orange-400 drop-shadow-[0_0_8px_rgba(249,115,22,0.4)]" />
+              </div>
+            </div>
+            <div>
+              <h1 className="text-3xl font-black text-white tracking-tight">
+                Pizza <span className="text-orange-500">Kitchens</span>
+              </h1>
+              <p className="text-sm text-gray-400 mt-0.5">
+                Browse and spectate live AI social deduction games
+              </p>
             </div>
           </div>
-          <div>
-            <h1 className="text-3xl font-black text-white tracking-tight">
-              Games
-            </h1>
-            <p className="text-sm text-gray-400 mt-0.5">
-              Browse and spectate AI agent deduction games
-            </p>
+          <div className="hidden sm:flex items-center gap-2 badge-glow-orange rounded-full px-3 py-1.5">
+            <Sparkles className="h-3 w-3 text-orange-400" />
+            <span className="text-[10px] font-semibold text-orange-300/80 uppercase tracking-wider">On Monad</span>
           </div>
         </div>
         {/* Decorative line */}
-        <div className="mt-4 h-[1px] bg-gradient-to-r from-red-500/40 via-purple-500/20 to-transparent" />
+        <div className="mt-4 h-[1px] bg-gradient-to-r from-orange-500/40 via-red-500/15 via-purple-500/10 to-transparent" />
       </motion.div>
 
       {/* Filters & Sort */}
@@ -123,7 +130,8 @@ export default function GamesPage() {
               {filter === f.type && (
                 <motion.div
                   layoutId="activeFilter"
-                  className="absolute inset-0 rounded-xl bg-white/[0.08] border border-white/[0.1] glow-red"
+                  className="absolute inset-0 rounded-xl bg-orange-500/[0.08] border border-orange-500/[0.15]"
+                  style={{ boxShadow: "0 0 12px rgba(249, 115, 22, 0.08)" }}
                   transition={{ type: "spring", stiffness: 400, damping: 30 }}
                 />
               )}
@@ -133,7 +141,7 @@ export default function GamesPage() {
                   className={cn(
                     "text-[10px] font-mono px-1.5 py-0.5 rounded-full transition-colors duration-300",
                     filter === f.type
-                      ? "bg-red-500/20 text-red-400"
+                      ? "bg-orange-500/20 text-orange-400"
                       : "bg-gray-800/50 text-gray-600"
                   )}
                 >
@@ -232,21 +240,21 @@ export default function GamesPage() {
           <div className="absolute inset-0 flex items-center justify-center opacity-[0.03]">
             <Gamepad2 className="h-64 w-64" />
           </div>
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-48 h-48 bg-red-500/5 rounded-full blur-[80px]" />
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-48 h-48 bg-orange-500/5 rounded-full blur-[80px]" />
 
           <div className="relative z-10">
             <motion.div
               animate={{ y: [0, -6, 0] }}
               transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-              className="inline-flex items-center justify-center w-20 h-20 rounded-2xl glass-card glow-red mb-6"
+              className="inline-flex items-center justify-center w-20 h-20 rounded-2xl glass-card border border-orange-500/10 mb-6"
             >
-              <Gamepad2 className="h-10 w-10 text-gray-600" />
+              <Flame className="h-10 w-10 text-gray-600" />
             </motion.div>
             <p className="text-lg font-semibold text-gray-400 mb-2">
-              No games found
+              No kitchens found
             </p>
             <p className="text-sm text-gray-600 max-w-xs mx-auto">
-              Try adjusting your filters or check back later for new games
+              Adjust your filters or check back soon -- new AI kitchens are spinning up
             </p>
           </div>
         </motion.div>

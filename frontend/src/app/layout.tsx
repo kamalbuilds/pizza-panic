@@ -21,27 +21,28 @@ const pressStart = Press_Start_2P({
 });
 
 export const metadata: Metadata = {
-  title: "Pizza Panic - AI Kitchen Chaos on Monad",
+  title: "Pizza Panic - AI Social Deduction on Monad",
   description:
-    "Watch AI chefs sabotage each other in an autonomous social deduction kitchen game on Monad blockchain.",
+    "AI agents compete as Chefs and Saboteurs in an on-chain social deduction game. Spectate live, bet on outcomes, and watch autonomous kitchen chaos unfold on Monad.",
   keywords: [
-    "AI",
+    "AI agents",
     "pizza",
-    "kitchen chaos",
     "social deduction",
     "Monad",
     "blockchain",
-    "game",
-    "autonomous agents",
-    "cooking",
+    "autonomous game",
+    "on-chain AI",
+    "spectate",
+    "betting",
+    "kitchen chaos",
   ],
   icons: {
     icon: [{ url: "/favicon.svg", type: "image/svg+xml" }],
   },
   openGraph: {
-    title: "Pizza Panic - AI Kitchen Chaos on Monad",
+    title: "Pizza Panic - AI Social Deduction on Monad",
     description:
-      "Watch AI chefs sabotage each other in an autonomous social deduction kitchen game on Monad blockchain.",
+      "AI agents compete as Chefs and Saboteurs in an on-chain social deduction game. Spectate live, bet on outcomes, and watch autonomous kitchen chaos unfold on Monad.",
     siteName: "Pizza Panic",
     type: "website",
   },
@@ -57,22 +58,34 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${pressStart.variable} antialiased ambient-bg text-white min-h-screen relative`}
       >
-        {/* Ambient background - minimal, two subtle washes */}
+        {/* Ambient background - layered glows */}
         <div className="fixed inset-0 overflow-hidden pointer-events-none z-0">
+          {/* Top-left warm glow */}
           <div
-            className="absolute -top-32 -left-32 w-[600px] h-[600px] rounded-full opacity-[0.025]"
+            className="absolute -top-40 -left-40 w-[700px] h-[700px] rounded-full opacity-[0.03]"
             style={{
-              background: "radial-gradient(circle, rgba(249, 115, 22, 0.8) 0%, transparent 70%)",
+              background: "radial-gradient(circle, rgba(249, 115, 22, 0.9) 0%, transparent 65%)",
+              filter: "blur(120px)",
+            }}
+          />
+          {/* Center subtle red wash */}
+          <div
+            className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[800px] h-[400px] rounded-full opacity-[0.015]"
+            style={{
+              background: "radial-gradient(ellipse, rgba(239, 68, 68, 0.8) 0%, transparent 60%)",
               filter: "blur(100px)",
             }}
           />
+          {/* Bottom-right purple glow */}
           <div
-            className="absolute -bottom-40 -right-40 w-[600px] h-[600px] rounded-full opacity-[0.02]"
+            className="absolute -bottom-48 -right-48 w-[700px] h-[700px] rounded-full opacity-[0.025]"
             style={{
-              background: "radial-gradient(circle, rgba(168, 85, 247, 0.6) 0%, transparent 70%)",
-              filter: "blur(100px)",
+              background: "radial-gradient(circle, rgba(168, 85, 247, 0.7) 0%, transparent 65%)",
+              filter: "blur(120px)",
             }}
           />
+          {/* Subtle grid pattern overlay */}
+          <div className="absolute inset-0 grid-bg opacity-40" />
         </div>
 
         {/* Content layer */}

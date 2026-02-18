@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import { Loader2, ArrowLeft, WifiOff } from "lucide-react";
 import Link from "next/link";
 import GameViewer from "@/components/GameViewer";
-import BettingPanel from "@/components/BettingPanel";
+import PredictionPanel from "@/components/PredictionPanel";
 import { useGameSocket } from "@/hooks/useGameSocket";
 
 export default function GamePage({
@@ -169,19 +169,18 @@ export default function GamePage({
               connected={connected}
               error={error}
               winner={winner}
-              predictions={predictions}
-              predictionResults={predictionResults}
-              onPredict={submitPrediction}
             />
           </div>
 
-          {/* Betting sidebar */}
+          {/* Spectator Predictions sidebar */}
           <div className="xl:col-span-1">
-            <BettingPanel
-              gameId={gameId}
+            <PredictionPanel
               players={players}
-              odds={null}
-              activeBets={[]}
+              phase={phase}
+              winner={winner}
+              predictions={predictions}
+              predictionResults={predictionResults}
+              onPredict={submitPrediction}
             />
           </div>
         </motion.div>

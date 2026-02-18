@@ -19,8 +19,7 @@ import {
 import PlayerAvatar from "./PlayerAvatar";
 import PhaseTimer from "./PhaseTimer";
 import DiscussionMessage from "./DiscussionMessage";
-import type { GameState, Player, ChatMessage, GamePhase, PredictionResult } from "@/lib/types";
-import PredictionPanel from "./PredictionPanel";
+import type { GameState, Player, ChatMessage, GamePhase } from "@/lib/types";
 
 const PixiArena = dynamic(() => import("./game/PixiArena"), {
   ssr: false,
@@ -40,9 +39,6 @@ interface GameViewerProps {
   connected: boolean;
   error: string | null;
   winner: "lobsters" | "impostor" | null;
-  predictions: { count: number };
-  predictionResults: PredictionResult[] | null;
-  onPredict: (targetAddress: string) => void;
 }
 
 /* ─── helper: phase accent config ─── */
@@ -137,9 +133,6 @@ export default function GameViewer({
   connected,
   error,
   winner,
-  predictions,
-  predictionResults,
-  onPredict,
 }: GameViewerProps) {
   const chatEndRef = useRef<HTMLDivElement>(null);
   const chatContainerRef = useRef<HTMLDivElement>(null);
@@ -1185,15 +1178,6 @@ export default function GameViewer({
             </div>
           </div>
 
-          {/* Prediction Panel */}
-          <PredictionPanel
-            players={players}
-            phase={phase}
-            winner={winner}
-            predictions={predictions}
-            predictionResults={predictionResults}
-            onPredict={onPredict}
-          />
         </div>
       </div>
     </div>

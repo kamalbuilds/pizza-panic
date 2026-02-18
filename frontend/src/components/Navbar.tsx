@@ -24,13 +24,13 @@ export default function Navbar() {
       {/* Glass background with gradient border bottom */}
       <div className="relative">
         {/* Backdrop */}
-        <div className="absolute inset-0 bg-[#0a0e1a]/90 backdrop-blur-xl" />
+        <div className="absolute inset-0 bg-[#06080f]/92 backdrop-blur-2xl" />
 
-        {/* Bottom border */}
+        {/* Bottom border - orange accent gradient */}
         <div
           className="absolute bottom-0 left-0 right-0 h-[1px]"
           style={{
-            backgroundImage: "linear-gradient(90deg, transparent, rgba(148, 163, 184, 0.08), transparent)",
+            backgroundImage: "linear-gradient(90deg, transparent 5%, rgba(249, 115, 22, 0.15) 30%, rgba(239, 68, 68, 0.1) 50%, rgba(168, 85, 247, 0.1) 70%, transparent 95%)",
           }}
         />
 
@@ -39,18 +39,24 @@ export default function Navbar() {
           {/* Logo */}
           <Link href="/" className="flex items-center gap-3 group">
             <div className="relative">
+              <div className="absolute inset-0 bg-orange-500/20 rounded-lg blur-lg opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
               <Image
                 src="/logo.svg"
                 alt="Pizza Panic"
                 width={34}
                 height={34}
-                className="relative rounded-lg"
+                className="relative rounded-lg group-hover:scale-105 transition-transform duration-300"
               />
             </div>
-            <span className="font-pixel text-sm tracking-wide">
-              <span className="text-orange-500">PIZZA</span>
-              <span className="text-gray-300 ml-1">PANIC</span>
-            </span>
+            <div className="flex flex-col">
+              <span className="font-pixel text-sm tracking-wide leading-none">
+                <span className="text-orange-500 drop-shadow-[0_0_8px_rgba(249,115,22,0.3)]">PIZZA</span>
+                <span className="text-gray-200 ml-1">PANIC</span>
+              </span>
+              <span className="text-[8px] text-gray-600 tracking-[0.3em] uppercase font-medium mt-0.5 hidden sm:block">
+                AI Social Deduction
+              </span>
+            </div>
           </Link>
 
           {/* Desktop Nav Links */}
@@ -164,7 +170,7 @@ export default function Navbar() {
             className="sm:hidden overflow-hidden relative"
           >
             {/* Glass backdrop for mobile menu */}
-            <div className="absolute inset-0 bg-[#020617]/90 backdrop-blur-2xl" />
+            <div className="absolute inset-0 bg-[#06080f]/95 backdrop-blur-2xl" />
             <div className="relative px-4 py-3 space-y-1">
               {navLinks.map((link, index) => {
                 const isActive =

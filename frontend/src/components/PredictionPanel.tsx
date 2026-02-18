@@ -14,7 +14,7 @@ interface PredictionPanelProps {
   winner: "lobsters" | "impostor" | null;
   predictions: { count: number };
   predictionResults: PredictionResult[] | null;
-  onPredict: (targetAddress: string) => void;
+  onPredict: (targetAddress: string, spectatorAddress?: string) => void;
 }
 
 export default function PredictionPanel({
@@ -46,7 +46,7 @@ export default function PredictionPanel({
 
   function handlePredict(targetAddress: string) {
     setSelectedTarget(targetAddress);
-    onPredict(targetAddress);
+    onPredict(targetAddress, address);
   }
 
   return (

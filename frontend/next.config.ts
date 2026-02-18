@@ -1,7 +1,7 @@
 import type { NextConfig } from "next";
 
-const ENGINE_URL = process.env.ENGINE_URL || "https://pizza-panic-production.up.railway.app";
-const WS_ENGINE_URL = process.env.WS_ENGINE_URL || "https://pizza-panic-production.up.railway.app";
+const ENGINE_URL = process.env.ENGINE_URL || "https://engine-production-6245.up.railway.app";
+const WS_ENGINE_URL = process.env.WS_ENGINE_URL || "https://engine-production-6245.up.railway.app";
 
 const nextConfig: NextConfig = {
   async rewrites() {

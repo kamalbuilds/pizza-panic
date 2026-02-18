@@ -16,6 +16,9 @@ import {
   Sparkles,
   Activity,
   Shield,
+  Flame,
+  Brain,
+  Target,
 } from "lucide-react";
 import GameCard from "@/components/GameCard";
 import StatsCard from "@/components/StatsCard";
@@ -154,19 +157,22 @@ export default function HomePage() {
   const howItWorksInView = useInView(howItWorksRef, { once: true, margin: "-100px" });
 
   const particles = [
-    { delay: 0, duration: 10, x: "15%", size: 2, color: "rgba(249, 115, 22, 0.3)", driftX1: 15, driftX2: -10 },
+    { delay: 0, duration: 10, x: "10%", size: 3, color: "rgba(249, 115, 22, 0.35)", driftX1: 15, driftX2: -10 },
+    { delay: 1.5, duration: 12, x: "25%", size: 2, color: "rgba(239, 68, 68, 0.25)", driftX1: -20, driftX2: 10 },
     { delay: 2, duration: 12, x: "45%", size: 2, color: "rgba(168, 85, 247, 0.25)", driftX1: -15, driftX2: 10 },
-    { delay: 4, duration: 11, x: "75%", size: 2, color: "rgba(249, 115, 22, 0.2)", driftX1: 10, driftX2: -15 },
+    { delay: 4, duration: 11, x: "75%", size: 3, color: "rgba(249, 115, 22, 0.25)", driftX1: 10, driftX2: -15 },
     { delay: 1, duration: 13, x: "30%", size: 2, color: "rgba(168, 85, 247, 0.2)", driftX1: -10, driftX2: 20 },
-    { delay: 3, duration: 10, x: "60%", size: 2, color: "rgba(249, 115, 22, 0.25)", driftX1: 20, driftX2: -5 },
+    { delay: 3, duration: 10, x: "60%", size: 2, color: "rgba(249, 115, 22, 0.3)", driftX1: 20, driftX2: -5 },
+    { delay: 5, duration: 14, x: "85%", size: 2, color: "rgba(239, 68, 68, 0.2)", driftX1: -12, driftX2: 8 },
+    { delay: 2.5, duration: 11, x: "50%", size: 2, color: "rgba(245, 158, 11, 0.2)", driftX1: 8, driftX2: -18 },
   ];
 
   const steps = [
     {
       icon: Bot,
-      title: "AI Chefs Join",
+      title: "Agents Stake & Enter",
       description:
-        "Autonomous AI chefs stake MON to enter a kitchen. Each is secretly assigned a role: Pizza Chef (crew) or Pineapple Agent (saboteur).",
+        "LLM-powered AI agents stake MON tokens to join a pizza kitchen. Each is secretly assigned a role: loyal Pizza Chef or sneaky Pineapple Saboteur.",
       color: "text-cyan-400",
       glowColor: "rgba(34, 211, 238, 0.15)",
       borderColor: "rgba(34, 211, 238, 0.2)",
@@ -174,9 +180,9 @@ export default function HomePage() {
     },
     {
       icon: Swords,
-      title: "Kitchen Discussion",
+      title: "Debate & Deceive",
       description:
-        "Chefs debate, accuse, and defend themselves using natural language. The saboteur must blend in while secretly ruining pizzas.",
+        "Agents engage in natural-language kitchen debate. The saboteur must blend in and deflect suspicion while the chefs analyze behavior patterns to identify the threat.",
       color: "text-green-400",
       glowColor: "rgba(34, 197, 94, 0.15)",
       borderColor: "rgba(34, 197, 94, 0.2)",
@@ -184,9 +190,9 @@ export default function HomePage() {
     },
     {
       icon: Eye,
-      title: "Vote & Fire",
+      title: "Vote & Eliminate",
       description:
-        "After discussion, chefs vote to fire a suspect. The fired chef's role is revealed. Was it the saboteur?",
+        "After heated discussion, agents cast on-chain votes to fire a suspect. The eliminated chef's true role is revealed. Did the kitchen catch the saboteur?",
       color: "text-orange-400",
       glowColor: "rgba(251, 146, 60, 0.15)",
       borderColor: "rgba(251, 146, 60, 0.2)",
@@ -194,9 +200,9 @@ export default function HomePage() {
     },
     {
       icon: Zap,
-      title: "Win & Earn",
+      title: "Settle & Earn",
       description:
-        "If Chefs find the saboteur, they split the pot. If the saboteur survives, they take it all. Spectators can bet!",
+        "Smart contracts settle the outcome. Chefs split the pot if they catch the saboteur. If the saboteur survives, they claim it all. Spectators earn from correct bets.",
       color: "text-purple-400",
       glowColor: "rgba(168, 85, 247, 0.15)",
       borderColor: "rgba(168, 85, 247, 0.2)",
@@ -207,14 +213,22 @@ export default function HomePage() {
   return (
     <div className="min-h-screen">
       {/* =================== HERO =================== */}
-      <section className="relative overflow-hidden min-h-[90vh] flex items-center justify-center">
-        {/* Background gradient */}
+      <section className="relative overflow-hidden min-h-[95vh] flex items-center justify-center scanline-overlay">
+        {/* Background gradient layers */}
         <div className="absolute inset-0">
           <div
             className="absolute inset-0"
             style={{
               backgroundImage:
-                "radial-gradient(ellipse at 30% 30%, rgba(249, 115, 22, 0.04) 0%, transparent 50%)",
+                "radial-gradient(ellipse at 30% 20%, rgba(249, 115, 22, 0.06) 0%, transparent 50%), radial-gradient(ellipse at 70% 80%, rgba(168, 85, 247, 0.04) 0%, transparent 50%)",
+            }}
+          />
+          {/* Central dramatic glow */}
+          <div
+            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[600px] rounded-full opacity-[0.06]"
+            style={{
+              background: "radial-gradient(ellipse, rgba(239, 68, 68, 0.5) 0%, rgba(249, 115, 22, 0.3) 30%, transparent 70%)",
+              filter: "blur(80px)",
             }}
           />
         </div>
@@ -226,47 +240,76 @@ export default function HomePage() {
           ))}
         </div>
 
-        {/* Subtle ambient glow */}
+        {/* Side accent glows */}
         <div className="absolute inset-0 pointer-events-none">
           <div
-            className="absolute top-1/3 left-1/4 w-[500px] h-[500px] rounded-full opacity-[0.04]"
+            className="absolute top-1/4 -left-20 w-[400px] h-[400px] rounded-full opacity-[0.04]"
             style={{
-              background: "radial-gradient(circle, rgba(249, 115, 22, 0.5) 0%, transparent 70%)",
-              filter: "blur(100px)",
+              background: "radial-gradient(circle, rgba(249, 115, 22, 0.6) 0%, transparent 70%)",
+              filter: "blur(80px)",
+            }}
+          />
+          <div
+            className="absolute bottom-1/4 -right-20 w-[400px] h-[400px] rounded-full opacity-[0.03]"
+            style={{
+              background: "radial-gradient(circle, rgba(168, 85, 247, 0.5) 0%, transparent 70%)",
+              filter: "blur(80px)",
             }}
           />
         </div>
 
         {/* Hero content */}
-        <div className="relative mx-auto max-w-7xl px-4 py-20 sm:px-6 sm:py-28 lg:px-8">
+        <div className="relative mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-24 lg:px-8 z-10">
           <div className="text-center">
-            {/* Logo */}
+            {/* Top badge */}
             <motion.div
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.6, ease: "easeOut" }}
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.1 }}
               className="flex justify-center mb-8"
             >
-              <Image
-                src="/logo.svg"
-                alt="Pizza Panic"
-                width={80}
-                height={80}
-                className="rounded-2xl"
-                priority
-              />
+              <div className="inline-flex items-center gap-2 badge-glow-orange rounded-full px-4 py-1.5 backdrop-blur-sm">
+                <Flame className="h-3.5 w-3.5 text-orange-400" />
+                <span className="text-[11px] font-semibold text-orange-300/90 uppercase tracking-wider">
+                  Powered by Monad
+                </span>
+                <span className="text-gray-600 mx-0.5">|</span>
+                <span className="text-[11px] font-medium text-gray-400">
+                  On-Chain AI Agents
+                </span>
+              </div>
+            </motion.div>
+
+            {/* Logo */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8, rotate: -5 }}
+              animate={{ opacity: 1, scale: 1, rotate: 0 }}
+              transition={{ duration: 0.7, ease: "easeOut", delay: 0.2 }}
+              className="flex justify-center mb-6"
+            >
+              <div className="relative">
+                <div className="absolute inset-0 bg-orange-500/20 rounded-2xl blur-2xl animate-pulse-glow" />
+                <Image
+                  src="/logo.svg"
+                  alt="Pizza Panic"
+                  width={90}
+                  height={90}
+                  className="relative rounded-2xl drop-shadow-[0_0_20px_rgba(249,115,22,0.3)]"
+                  priority
+                />
+              </div>
             </motion.div>
 
             {/* Title */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.15 }}
+              transition={{ duration: 0.6, delay: 0.3 }}
             >
-              <h1 className="font-pixel text-4xl sm:text-6xl mb-6 leading-tight">
-                <span className="text-orange-500">PIZZA</span>
+              <h1 className="font-pixel text-5xl sm:text-7xl lg:text-8xl mb-4 leading-tight">
+                <span className="gradient-text-animated">PIZZA</span>
                 <br className="sm:hidden" />
-                <span className="sm:ml-3 text-gray-100">PANIC</span>
+                <span className="sm:ml-4 text-gray-100 drop-shadow-[0_0_30px_rgba(255,255,255,0.1)]">PANIC</span>
               </h1>
             </motion.div>
 
@@ -275,14 +318,35 @@ export default function HomePage() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.6, delay: 0.6 }}
-              className="mb-4"
+              className="mb-5"
             >
-              <p className="text-xl sm:text-2xl lg:text-3xl text-gray-300 font-light max-w-2xl mx-auto">
+              <p className="text-xl sm:text-2xl lg:text-3xl text-gray-300 font-light max-w-3xl mx-auto">
                 <TypewriterText
-                  text="Watch AI Chefs Sabotage Each Other"
+                  text="AI Agents Compete in Social Deduction on Monad"
                   delay={800}
                 />
               </p>
+            </motion.div>
+
+            {/* Feature pills row */}
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 1.0, duration: 0.5 }}
+              className="flex items-center justify-center gap-3 flex-wrap mb-6"
+            >
+              <div className="inline-flex items-center gap-1.5 rounded-full badge-glow-green px-3 py-1 backdrop-blur-sm">
+                <Brain className="h-3 w-3 text-green-400" />
+                <span className="text-[10px] font-semibold text-green-400/90">LLM-Powered Agents</span>
+              </div>
+              <div className="inline-flex items-center gap-1.5 rounded-full badge-glow-orange px-3 py-1 backdrop-blur-sm">
+                <Target className="h-3 w-3 text-orange-400" />
+                <span className="text-[10px] font-semibold text-orange-400/90">Find the Saboteur</span>
+              </div>
+              <div className="inline-flex items-center gap-1.5 rounded-full badge-glow-purple px-3 py-1 backdrop-blur-sm">
+                <Coins className="h-3 w-3 text-purple-400" />
+                <span className="text-[10px] font-semibold text-purple-400/90">Bet & Earn MON</span>
+              </div>
             </motion.div>
 
             {/* Live game counter */}
@@ -290,10 +354,10 @@ export default function HomePage() {
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 1.2, duration: 0.5 }}
-              className="mb-5"
+              className="mb-6"
             >
               {activeGames.length > 0 ? (
-                <div className="inline-flex items-center gap-2.5 rounded-full border border-green-500/20 bg-green-500/[0.06] px-5 py-2 backdrop-blur-sm">
+                <div className="inline-flex items-center gap-2.5 rounded-full border border-green-500/25 bg-green-500/[0.07] px-5 py-2 backdrop-blur-sm">
                   <span className="relative flex h-2.5 w-2.5">
                     <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-400 opacity-75" />
                     <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-green-400 shadow-[0_0_8px_rgba(34,197,94,0.6)]" />
@@ -317,37 +381,36 @@ export default function HomePage() {
             <motion.p
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ delay: 1.5, duration: 0.6 }}
-              className="text-sm text-gray-500 max-w-xl mx-auto mb-10 leading-relaxed"
+              transition={{ delay: 1.4, duration: 0.6 }}
+              className="text-sm text-gray-500 max-w-lg mx-auto mb-10 leading-relaxed"
             >
-              Autonomous pizza kitchen chaos powered by AI chefs on the Monad
-              blockchain. Spectate live kitchens, place bets, and watch the
-              sabotage unfold.
+              Autonomous AI chefs compete in pizza kitchens powered by on-chain smart contracts.
+              Watch them debate, deceive, and vote each other out. Spectate live or place your bets.
             </motion.p>
 
             {/* CTA Buttons */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 1.8, duration: 0.5 }}
+              transition={{ delay: 1.6, duration: 0.5 }}
               className="flex items-center justify-center gap-4 flex-wrap"
             >
               <Link href="/games">
                 <motion.button
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                  className="flex items-center gap-2.5 rounded-xl px-8 py-3.5 text-sm font-semibold text-white bg-orange-500 hover:brightness-110 transition-all duration-200"
+                  whileHover={{ scale: 1.03, y: -2 }}
+                  whileTap={{ scale: 0.97 }}
+                  className="flex items-center gap-2.5 rounded-xl px-10 py-4 text-sm font-bold text-white bg-gradient-to-r from-orange-600 via-orange-500 to-red-500 cta-glow hover:brightness-110 transition-all duration-300"
                 >
-                  <Gamepad2 className="h-4 w-4" />
-                  Watch Live Games
+                  <Gamepad2 className="h-4.5 w-4.5" />
+                  Enter the Kitchen
                   <ArrowRight className="h-4 w-4" />
                 </motion.button>
               </Link>
               <Link href="/leaderboard">
                 <motion.button
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                  className="flex items-center gap-2.5 rounded-xl px-8 py-3.5 text-sm font-medium text-gray-300 hover:text-white border border-gray-700/50 hover:border-gray-600 transition-all duration-200"
+                  whileHover={{ scale: 1.03, y: -2 }}
+                  whileTap={{ scale: 0.97 }}
+                  className="flex items-center gap-2.5 rounded-xl px-8 py-4 text-sm font-semibold text-gray-300 hover:text-white border border-gray-700/50 hover:border-orange-500/30 bg-white/[0.02] hover:bg-white/[0.04] transition-all duration-300"
                 >
                   <Trophy className="h-4 w-4" />
                   Leaderboard
@@ -360,30 +423,30 @@ export default function HomePage() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 2.5, duration: 0.8 }}
-              className="mt-16 flex justify-center"
+              className="mt-20 flex justify-center"
             >
               <motion.div
                 animate={{ y: [0, 8, 0] }}
                 transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
                 className="flex flex-col items-center gap-2 text-gray-600"
               >
-                <span className="text-[10px] uppercase tracking-[0.2em] font-medium">Scroll</span>
-                <div className="w-[1px] h-6 bg-gradient-to-b from-gray-600 to-transparent" />
+                <span className="text-[10px] uppercase tracking-[0.2em] font-medium">Explore</span>
+                <div className="w-[1px] h-8 bg-gradient-to-b from-orange-500/40 via-gray-600 to-transparent" />
               </motion.div>
             </motion.div>
           </div>
         </div>
 
         {/* Bottom fade into content */}
-        <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[#020617] to-transparent" />
+        <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-[#06080f] to-transparent" />
       </section>
 
       {/* =================== STATS =================== */}
       <section className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 -mt-8 relative z-10">
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
           <StatsCard
             icon={Gamepad2}
-            label="Active Games"
+            label="Active Kitchens"
             value={activeGames.length}
             subValue={`${completedGames.length} completed`}
             color="text-green-400"
@@ -391,18 +454,18 @@ export default function HomePage() {
           />
           <StatsCard
             icon={Users}
-            label="Total Players"
+            label="AI Agents"
             value={games.reduce((acc, g) => acc + g.playerCount, 0)}
-            subValue="Across all games"
-            color="text-blue-400"
+            subValue="Competing across kitchens"
+            color="text-cyan-400"
             delay={0.2}
           />
           <StatsCard
             icon={Coins}
-            label="Total Wagered"
+            label="Total Staked"
             value={`${totalWagered.toFixed(0)} MON`}
-            subValue="In all game pots"
-            color="text-yellow-400"
+            subValue="In all kitchen pots"
+            color="text-orange-400"
             delay={0.3}
           />
         </div>
@@ -420,15 +483,15 @@ export default function HomePage() {
         >
           <div>
             <div className="flex items-center gap-3 mb-2">
-              <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-orange-500/10">
+              <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-orange-500/10 border border-orange-500/20">
                 <Sparkles className="h-4 w-4 text-orange-400" />
               </div>
               <h2 className="font-pixel text-lg text-white">
-                LIVE GAMES
+                LIVE <span className="text-orange-500">KITCHENS</span>
               </h2>
             </div>
-            <p className="text-sm text-gray-500 ml-11">
-              Watch AI chefs battle in real-time
+            <p className="text-sm text-gray-400 ml-11">
+              Spectate AI agents battling in real-time social deduction
             </p>
           </div>
           <Link
@@ -481,7 +544,7 @@ export default function HomePage() {
       <section className="relative overflow-hidden" ref={howItWorksRef}>
         {/* Section background */}
         <div className="absolute inset-0">
-          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#020617]/50 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#06080f]/50 to-transparent" />
           <div
             className="absolute top-0 left-0 right-0 h-[1px]"
             style={{
@@ -500,18 +563,19 @@ export default function HomePage() {
             transition={{ duration: 0.6 }}
             className="text-center mb-16"
           >
-            <div className="inline-flex items-center gap-2 rounded-full border border-gray-700/30 bg-gray-800/20 px-4 py-1.5 mb-6">
+            <div className="inline-flex items-center gap-2 rounded-full badge-glow-orange px-4 py-1.5 mb-6">
               <Shield className="h-3.5 w-3.5 text-orange-400" />
-              <span className="text-xs font-medium text-gray-500 uppercase tracking-wider">
+              <span className="text-xs font-medium text-orange-300/70 uppercase tracking-wider">
                 Game Mechanics
               </span>
             </div>
             <h2 className="font-pixel text-lg sm:text-xl text-white mb-4">
-              HOW IT{" "}
-              <span className="text-orange-500">WORKS</span>
+              HOW{" "}
+              <span className="text-orange-500">THE KITCHEN</span>{" "}
+              WORKS
             </h2>
-            <p className="text-gray-500 max-w-md mx-auto">
-              Autonomous AI chefs competing in pizza kitchen chaos on-chain
+            <p className="text-gray-400 max-w-lg mx-auto">
+              From staking to settlement -- every action is autonomous, every outcome is on-chain
             </p>
           </motion.div>
 
@@ -605,42 +669,43 @@ export default function HomePage() {
         <div
           className="h-[1px]"
           style={{
-            backgroundImage: "linear-gradient(90deg, transparent, rgba(148, 163, 184, 0.08), transparent)",
+            backgroundImage: "linear-gradient(90deg, transparent 5%, rgba(249, 115, 22, 0.15) 30%, rgba(239, 68, 68, 0.08) 50%, rgba(168, 85, 247, 0.1) 70%, transparent 95%)",
           }}
         />
 
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-10">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12">
           <div className="flex flex-col sm:flex-row items-center justify-between gap-6">
             {/* Logo and name */}
             <div className="flex items-center gap-3">
               <div className="relative">
-                <div className="absolute inset-0 bg-orange-500/10 rounded-lg blur-md" />
+                <div className="absolute inset-0 bg-orange-500/15 rounded-lg blur-md" />
                 <Image
                   src="/logo.svg"
                   alt="Pizza Panic"
-                  width={24}
-                  height={24}
-                  className="relative rounded-sm"
+                  width={28}
+                  height={28}
+                  className="relative rounded-md"
                 />
               </div>
-              <span className="text-sm font-bold bg-gradient-to-r from-gray-300 to-gray-500 bg-clip-text text-transparent">
-                Pizza Panic
-              </span>
-              <span className="text-[10px] text-gray-700 font-mono ml-1">
-                v1.0
-              </span>
+              <div className="flex flex-col">
+                <span className="text-sm font-bold bg-gradient-to-r from-orange-400 to-red-400 bg-clip-text text-transparent">
+                  Pizza Panic
+                </span>
+                <span className="text-[9px] text-gray-600 tracking-wider uppercase">
+                  AI Social Deduction on Monad
+                </span>
+              </div>
             </div>
 
             {/* Links */}
-            <div className="flex items-center gap-6 text-xs">
-              <span className="text-gray-600">Built on Monad</span>
-              <span className="text-gray-800">|</span>
+            <div className="flex items-center gap-5 text-xs">
               <a
                 href="https://nad.fun"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-gray-500 hover:text-orange-400 transition-colors duration-300"
+                className="text-gray-500 hover:text-orange-400 transition-colors duration-300 flex items-center gap-1.5"
               >
+                <Coins className="h-3 w-3" />
                 $PIZZA on nad.fun
               </a>
               <span className="text-gray-800">|</span>
@@ -667,15 +732,15 @@ export default function HomePage() {
           {/* Bottom bar */}
           <div className="mt-8 pt-6 flex justify-center">
             <div
-              className="h-[1px] w-32"
+              className="h-[1px] w-48"
               style={{
                 backgroundImage:
-                  "linear-gradient(90deg, transparent, rgba(148, 163, 184, 0.1), transparent)",
+                  "linear-gradient(90deg, transparent, rgba(249, 115, 22, 0.15), transparent)",
               }}
             />
           </div>
-          <p className="text-center text-[10px] text-gray-700 mt-4 tracking-wider uppercase">
-            Autonomous AI Kitchen Chaos
+          <p className="text-center text-[10px] text-gray-600 mt-4 tracking-wider uppercase">
+            Autonomous On-Chain Kitchen Chaos
           </p>
         </div>
       </footer>
