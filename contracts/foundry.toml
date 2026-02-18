@@ -13,6 +13,6 @@ remappings = [
 [profile.default.fmt]
 line_length = 120
 
-# Monad mainnet
+# Monad testnet
 [rpc_endpoints]
-monad = "https://rpc.monad.xyz"
+monad_testnet = "https://testnet-rpc.monad.xyz"
