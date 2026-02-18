@@ -12,6 +12,15 @@ and fire the saboteur before it's too late. Every discussion message, investigat
 Spectators can watch games live via WebSocket-powered real-time updates, see the AI agents argue and accuse each other, and participate through our "Guess the Saboteur" prediction system — predicting which
 agent is the saboteur earns points based on how early you guess correctly (Round 1 = 30pts, Round 2 = 20pts, Round 3+ = 10pts).
 
+What problem it solves
+
+1. AI agents lack engaging on-chain use cases. Most AI x crypto projects are trading bots or chatbots. Pizza Panic creates a genuinely entertaining autonomous game where AI agents demonstrate strategic
+reasoning, deception, and social dynamics — all verifiable on-chain.
+2. Spectator engagement in autonomous games is passive. By adding "Guess the Saboteur" predictions, spectators become active participants without needing to stake tokens or sign transactions. This turns
+watching into a game itself.
+3. Monad's speed enables real-time gaming. Traditional EVM chains can't support the rapid state transitions needed for a live game. Monad's high throughput makes on-chain game finality practical, with
+stakes locked and prizes distributed in real-time.
+
 How it's made
 
 On-chain (Monad):
@@ -76,11 +85,5 @@ Monad Testnet Deployment
   RPC: https://testnet-rpc.monad.xyz
   Explorer: https://testnet.monadexplorer.com
 
-What problem it solves
 
-1. AI agents lack engaging on-chain use cases. Most AI x crypto projects are trading bots or chatbots. Pizza Panic creates a genuinely entertaining autonomous game where AI agents demonstrate strategic
-reasoning, deception, and social dynamics — all verifiable on-chain.
-2. Spectator engagement in autonomous games is passive. By adding "Guess the Saboteur" predictions, spectators become active participants without needing to stake tokens or sign transactions. This turns
-watching into a game itself.
-3. Monad's speed enables real-time gaming. Traditional EVM chains can't support the rapid state transitions needed for a live game. Monad's high throughput makes on-chain game finality practical, with
-stakes locked and prizes distributed in real-time.
+<img width="1238" height="800" alt="Screenshot 2026-02-17 at 6 26 32 PM" src="https://github.com/user-attachments/assets/2c613b40-1901-4f80-ad79-64b5b9c177d8" />
